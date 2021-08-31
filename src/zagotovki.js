@@ -95,3 +95,20 @@
     // console.log(double(3)); // ==> 6
     // console.log(double(10)); // ==>20
 
+
+    //     //MODAL 
+    //     let overlay = document.querySelector('.overlay'),
+    //     close = document.querySelector('.popup-close');
+    // document.querySelectorAll('.more,.description-btn').forEach(item => {
+    //     item.addEventListener('click', function(){
+    //         overlay.style.display = 'block';
+    //         this.classList.add('more-splash');
+    //         document.body.style.overflow = 'hidden';
+    //         item.classList.remove('more-splash');
+    //     });
+    // });
+    
+    // close.addEventListener('click', function(){
+    //     overlay.style.display = 'none';
+    //     document.body.style.overflow = '';
+    // });
