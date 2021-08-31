@@ -34,3 +34,64 @@
     //     }
     // }
     // setClock('timer', deadLine);
+
+    // ФУНКЦИЯ КОНСТРУКТОР!
+    // function User(name, id){
+    //     this.name =name;
+    //     this.id = id;
+    //     this.human = true;
+    //     this.hello = function(){
+    //         console.log(('Hello!' + this.name));
+    //     };
+    // }
+    // User.prototype.exit = function(name){
+    //     console.log('Пользователь '+ this.name + ' ушёл');
+    // };
+
+    // let ivan = new User('Ivan', 25),
+    //     alex = new User('Alex', 20);
+
+    // ivan.exit();
+
+    // КЛАСС КОНСТРУКТОР
+    // class User {
+    //     // базовые настройки класса
+    //     constructor(name, id){
+        
+    //         this.name =name;
+    //         this.id = id;
+    //         this.human = true;
+    //     }
+    //     hello(){
+    //         console.log(`hello ${this.name}`);
+    //     }
+    // }
+
+
+
+
+    // THIS
+    // 1) Просто вызов функции window/undefined.
+    // 2) Метод объекта - this = объект.
+    // 3) Конструктор (new) - this = новый созданный объект.
+    // 4) Указание конкретного контекста - call, apply, bind.
+
+    // НАСИЛЬНЫЙ ВЫЗОВ ФУНКЦИИ THIS, УКАЗЫВАНИЕ КОНТЕКСТА ФУНКЦИИ КОТОРЫЙ МЫ ЗАХОТИМ, А НЕ ПРОСТО window.
+    // let user = {
+    //     name:'John'
+    // };
+    // function sayName(surname) {
+    //     console.log(this);
+    //     console.log(this.name + surname);
+    // }
+
+    // console.log(sayName.call(this, ' Smith')); // можно передавать фамилию через строку
+    // console.log(sayName.apply(this, [' Snow'])); // можно передавать фамилии через массив
+
+    // function count(number){
+    //     return this*number;
+    // }
+    // let double = count.bind(2); // то что мы передаём в bind всегда передаёт значение в this
+    // console.log(double(3)); // ==> 6
+    // console.log(double(10)); // ==>20
+

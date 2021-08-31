@@ -55,9 +55,16 @@ window.addEventListener('DOMContentLoaded', function(){
             timeInterval = setInterval(updateClock, 1000);
         function updateClock(){
             let t = getTimeRemaning(endtime);
-            hours.textContent = t.hours;
-            minutes.textContent = t.minutes;
-            seconds.textContent = t.seconds;
+            function addZero (num){
+                if (num<=9) {
+                    return ('0'+num);
+                }
+                else {return num;
+            }
+        }
+            hours.textContent = addZero(t.hours);
+            minutes.textContent = addZero(t.minutes);
+            seconds.textContent = addZero(t.seconds);
 
             if (t.total <=0){
                 clearInterval(timeInterval);
