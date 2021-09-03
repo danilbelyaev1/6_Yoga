@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', () => {
     'use strict';
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    info.addEventListener('click', function (event) {
+    info.addEventListener('click', (event) => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for (let i = 0; i < tab.length; i++) {
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     //таймер
-    let deadLine = '2021-09-1';
+    let deadLine = '2021-09-30';
 
     function getTimeRemaning(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -96,4 +96,72 @@ window.addEventListener('DOMContentLoaded', function () {
         overlay.style.display = 'none';
         document.body.style.overflow = '';
     });
+
+    //form
+    let message = {
+        loading: 'Загрузка',
+        success: 'Спасибо! Скоро мы с вами свяжемся!',
+        failure: 'Что-то пошло не так!',
+    };
+    let form = document.querySelector('.main-form'),
+        input = form.getElementsByTagName('input'),
+        statusMessage = document.createElement('div');
+    statusMessage.classList.add('status');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        form.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        let formData = new FormData(form);
+        request.send(formData);
+    });
+
+    //slider
+    let slideIndex = 1, //текущий слайд
+        slides = document.querySelectorAll('.slider-item'), //слайды
+        prev = document.querySelector('.prev'), //стрелки
+        next = document.querySelector('.next'),
+        dotsWrap = document.querySelector('.slider-dots'), // поле с точками
+        dots = document.querySelectorAll('.dot'); // все точки
+
+    showSlides(slideIndex);
+
+    function showSlides(n) {
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        slides.forEach((item) => item.style.display = 'none');
+        dots.forEach((item) => item.classList.remove('dot-active'));
+        slides[slideIndex - 1].style.display = 'block';
+        dots[slideIndex - 1].classList.add('dot-active');
+    }
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+    prev.addEventListener('click', function () {
+        plusSlides(-1);
+    });
+    next.addEventListener('click', function () {
+        plusSlides(1);
+    });
+
+    dotsWrap.addEventListener('click', function(event){
+        for (let i=0; i< dots.length + 1; i++){
+            if (event.target.classList.contains('dot') && event.target == dots[i-1]){
+                currentSlide(i);
+            }
+        }
+    });
+
 });
